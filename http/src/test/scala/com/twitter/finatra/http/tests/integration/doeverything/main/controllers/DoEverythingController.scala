@@ -777,6 +777,10 @@ class DoEverythingController @Inject()(
   post("/localDateRequest") { r: TestCaseClassWithLocalDate =>
     response.ok
   }
+
+  patch("/innerFields") { r: RequestWithInnerSomething =>
+    r.something
+  }
 }
 
 case class MultipleInjectableValueParams(

@@ -2098,4 +2098,16 @@ class DoEverythingServerFeatureTest extends FeatureTest {
       andExpect = BadRequest,
       withJsonBody = """{"errors":["incorrect Content-Type, should be application/json-patch+json"]}""")
   }
+
+  test("inner fields do not fail on json array bodies") {
+    val request = RequestBuilder.patch("/innerFields")
+      .body(
+        """[]""",
+        contentType = Message.ContentTypeJson)
+
+    server.httpRequest(
+      request = request,
+      andExpect =  BadRequest)
+
+  }
 }
